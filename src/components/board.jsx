@@ -24,6 +24,7 @@ const checkWinner = () => {
 }
 
 const isWinner = checkWinner() ;
+const isDraw = state.every((value) => value !== null);
 
 const handleclick = (index) => {
 const copystate = [...state];
@@ -40,28 +41,38 @@ const handlerestart = () => {
 
 return (
     <div className="board-container">
-        {isWinner ? (<>Player {isWinner} has won <button onClick={() => handlerestart()}>Play Again</button></>) : (
+        {isWinner ? (
             <>
-            <h3>Player {isTurn ? "X" : "O"}, please play your move.</h3>
-        <div className="board-row">
-            <Square onClick ={() => handleclick(0)} value = {state[0]}/>
-            <Square onClick ={() => handleclick(1)} value = {state[1]}/>
-            <Square onClick ={() => handleclick(2)} value = {state[2]}/>
-        </div>
-        <div className="board-row">
-            <Square onClick ={() => handleclick(3)} value = {state[3]}/>
-            <Square onClick ={() => handleclick(4)} value = {state[4]}/>
-            <Square onClick ={() => handleclick(5)} value = {state[5]}/>
-        </div>
-        <div className="board-row">
-            <Square onClick ={() => handleclick(6)} value = {state[6]}/>
-            <Square onClick ={() => handleclick(7)} value = {state[7]}/>
-            <Square onClick ={() => handleclick(8)} value = {state[8]}/>
-        </div>
-        </>
-        )
-       }
+                Player {isWinner} has won 
+                <button onClick={() => handlerestart()}>Play Again</button>
+            </>
+        ) : isDraw ? (
+            <>
+                Game is Draw 
+                <button onClick={() => handlerestart()}>Play Again</button>
+            </>
+        ) : (
+            <>
+                <h3>Player {isTurn ? "X" : "O"}, please play your move.</h3>
+                <div className="board-row">
+                    <Square onClick={() => handleclick(0)} value={state[0]} />
+                    <Square onClick={() => handleclick(1)} value={state[1]} />
+                    <Square onClick={() => handleclick(2)} value={state[2]} />
+                </div>
+                <div className="board-row">
+                    <Square onClick={() => handleclick(3)} value={state[3]} />
+                    <Square onClick={() => handleclick(4)} value={state[4]} />
+                    <Square onClick={() => handleclick(5)} value={state[5]} />
+                </div>
+                <div className="board-row">
+                    <Square onClick={() => handleclick(6)} value={state[6]} />
+                    <Square onClick={() => handleclick(7)} value={state[7]} />
+                    <Square onClick={() => handleclick(8)} value={state[8]} />
+                </div>
+            </>
+        )}
     </div>
-)
+);
+
 } 
 export default Board ;

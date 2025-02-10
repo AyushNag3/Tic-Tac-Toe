@@ -7,7 +7,7 @@ import Board from './components/board'
 function App() {
 
   return (
-    <div className='TTT'>
+    <div className='flex justify-center'>
       <Board/>
       </div>
    
